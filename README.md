@@ -1,5 +1,3 @@
-# Academic Institution DB — Assignment 4A
-
 Group members:
 CS23B019
 CS23B034
@@ -7,19 +5,6 @@ CS23B098
 CS23B083
 CS22B010
 
-A terminal-based Python application to manage course and enrollment data for Even Semester 2006 in the `academic_insti` MySQL database.
-
-## Prerequisites
-- Python 3
-- MySQL with the `academic_insti` database loaded
-- mysql-connector-python: `pip install mysql-connector-python`
-
-## Running
-```bash
-python main.py -u root               # prompts for password
-python main.py -u root -p mypassword # password inline
-python main.py --host 192.168.1.5 -u root -p mypassword  # custom host
-```
 
 
 ### Requirements
@@ -43,6 +28,32 @@ python main.py -u yourusername -p yourpassword
 
 ```
 
-## Features
-1. **Add Course** — Assigns a teacher and classroom to a course for Even 2006, with validations on department, course, and professor.
-2. **Enroll Student** — Enrolls a student into one or more courses for Even 2006, verifying prerequisites are passed.
+### Application 
+
+After connecting, there will be the main menu with three options:
+
+```
+MAIN MENU
+─────────────────────────────────────
+1. Add course (Even Semester 2006)
+2. Enroll student (Even Semester 2006) 
+3. Exit
+─────────────────────────────────────
+```
+
+### Feature 1: Add Course
+
+Input required:
+- **Department ID** - Must exist in database
+- **Course ID** - Must exist and belong to the specified department
+- **Teacher (Emp) ID** - Must exist and belong to the specified department
+- **Classroom** - Room number/identifier
+
+
+
+### Feature 2: Enroll Student
+
+Input required:
+- **Student Roll No** - Must exist in database
+- **Course IDs** - Comma-separated list of course IDs to enroll in (e.g., "101,105,123"),this course should be taught and student should have cleared all prerequisites
+
