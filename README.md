@@ -14,19 +14,19 @@ CS22B010
 - MySQL Server with `academic_insti` database as its name 
 
 
-```
+
 
 ### Usage
 
 Run the application:
 
-
+```
 python main.py -u yourusername -p yourpassword
 
 ```
 
 
-```
+
 
 ### Application 
 
