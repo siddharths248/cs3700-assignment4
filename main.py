@@ -90,9 +90,9 @@ def add_course(conn):
 
 
 
-    # validating teacher exists and belongs to this dept
+    # validating teacher exists and belongs to this dept, and startYear <= 2006
     cursor.execute(
-        "SELECT empId, name, deptNo FROM professor WHERE empId = %s",
+        "SELECT empId, name, deptNo, startYear FROM professor WHERE empId = %s",
         (teacher_id,)
     )
     teacher = cursor.fetchone()
@@ -107,10 +107,17 @@ def add_course(conn):
         )
         cursor.close()
         return
+    if teacher['startYear'] > YEAR:
+        print_error(
+            f"Professor '{teacher_id}' ({teacher['name']}) joined in "
+            f"{teacher['startYear']}, which is after {YEAR}."
+        )
+        cursor.close()
+        return
     print_info(f"Professor found: {teacher['name']}")
 
 
-    # checkign for duplicate teaching entry in the same year/sem
+    # checking for duplicate teaching entry in the same year/sem
     cursor.execute(
         """SELECT 1 FROM teaching
            WHERE empId=%s AND courseId=%s AND sem=%s AND year=%s""",
